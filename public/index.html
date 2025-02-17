@@ -10,14 +10,16 @@
                 await fetch('/set-cookie', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: 'user', value: 'JohnDoe' })
+                    body: JSON.stringify({ name: 'user', value: 'Dheeraj' })
                 });
+                alert('Cookie set!');
             } else if (action === 'get') {
                 const response = await fetch('/get-cookies');
                 const cookies = await response.json();
                 alert(JSON.stringify(cookies));
             } else if (action === 'delete') {
                 await fetch('/delete-cookie/user', { method: 'DELETE' });
+                alert('Cookie deleted!');
             }
         }
     </script>
