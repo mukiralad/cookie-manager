@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Manager</title>
+    <script>
+        async function manageCookies(action) {
+            if (action === 'set') {
+                await fetch('/set-cookie', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: 'user', value: 'JohnDoe' })
+                });
+            } else if (action === 'get') {
+                const response = await fetch('/get-cookies');
+                const cookies = await response.json();
+                alert(JSON.stringify(cookies));
+            } else if (action === 'delete') {
+                await fetch('/delete-cookie/user', { method: 'DELETE' });
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Cookie Manager</h1>
+    <button onclick="manageCookies('set')">Set Cookie</button>
+    <button onclick="manageCookies('get')">Get Cookies</button>
+    <button onclick="manageCookies('delete')">Delete Cookie</button>
+</body>
+</html>
